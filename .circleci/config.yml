@@ -107,10 +107,10 @@ jobs:
           name: analyze front-end
           command: |
              cd frontend
-             npm i
-             npm audit fix --audit-level-critical --force
-             npm audit fix --audit-level-critical --force
+             npm i 
              npm audit --audit-level-critical
+             npm audit fix --audit-level-critical --force
+          when: on_fail
 
   scan-backend:
     docker:
@@ -125,9 +125,10 @@ jobs:
              cd backend
              npm i
              npm audit fix --audit-level-critical --force
-             npm audit fix --audit-level-critical --force
+            
              npm audit --audit-level-critical
-
+             npm audit fix --audit-level-critical --force
+          when: on_fail
 #   deploy-infrastructure:
 #     docker:
 #       # Docker image here that supports AWS CLI
