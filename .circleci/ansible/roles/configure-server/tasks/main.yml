@@ -4,7 +4,11 @@
   apt:
     upgrade: yes
     update_cache: yes
-    cache_valid_time: 86400
+    # cache_valid_time: 86400
+- name: "upgrade packages"
+  become: yes
+  apt:
+    upgrade: yes
 - name: remove unneeded dependency ## sudo apt install
   become: yes
   apt:
@@ -15,6 +19,15 @@
     name: ['nodejs', 'npm']
     state: latest
     update_cache: yes
+- name: "install n"
+  become: yes
+  npm:
+    name: n
+    global: yes
+    production: yes
+- name: "install nodejs 13.8.0"
+  become: yes
+  shell: n 13.8.0
 - name: install pm2
   become: yes
   npm:
@@ -22,3 +35,4 @@
     global: yes
     state: latest
     production: yes
+    state: present
