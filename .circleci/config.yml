@@ -181,7 +181,7 @@ jobs:
           at: ~/
       - run:
           name: Install dependencies
-          working_directory: ./.circleci/ansible
+          working_directory: .circleci/ansible
           command: |
             apk add --update ansible aws-cli
             ansible --version
