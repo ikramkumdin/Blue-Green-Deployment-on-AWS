@@ -176,7 +176,7 @@ jobs:
     steps:
       - checkout
       - add_ssh_keys:
-          fingerprints: ['d1:eb:00:98:9c:02:d2:d2:86:6d:1c:43:33:fe:cc:da']
+          fingerprints: ["d1:eb:00:98:9c:02:d2:d2:86:6d:1c:43:33:fe:cc:da"]
       - run:
           name: Install dependencies
           command: |
@@ -196,6 +196,8 @@ jobs:
             echo TYPEORM_PASSWORD=$TYPEORM_PASSWORD >> backend/.env
             echo TYPEORM_PORT=$TYPEORM_PORT >> backend/.env
             echo TYPEORM_USERNAME=$TYPEORM_USERNAME >> backend/.env
+            cat ~/project/.circleci/ansible/inventory.txt
+            export ANSIBLE_HOST_KEY_CHECKING=false
             cd .circleci/ansible
             ansible-playbook -i inventory.txt configure-server.yml
       - destroy-environment:
